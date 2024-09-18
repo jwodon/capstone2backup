@@ -1,0 +1,48 @@
+# Node.js dependencies
+/node_modules/
+
+# Logs
+*.log
+logs/
+pids/
+*.pid
+*.pid.lock
+
+# Environment variables
+.env
+
+# Dependency directories
+jspm_packages/
+
+# Build output
+/dist
+/build
+
+# Temporary files
+tmp/
+temp/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# NPM cache
+.npm/
+
+# Coverage reports
+coverage/
+
+# Docker
+docker-compose.override.yml
+.docker/
+docker-compose.yml

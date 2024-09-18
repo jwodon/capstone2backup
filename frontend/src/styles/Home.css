@@ -1,0 +1,159 @@
+/* Home page container */
+.home-container {
+    text-align: center;
+    padding: 40px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Welcome message for logged-in users */
+.welcome-message h1 {
+    color: #007bff;
+    font-size: 2.5rem;
+}
+
+.welcome-message p {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Signup prompt for users who are not logged in */
+.signup-prompt h1 {
+    color: #007bff;
+    font-size: 2.5rem;
+}
+
+.signup-prompt p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Action buttons */
+.action-buttons {
+    margin-top: 20px;
+}
+
+.btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    margin: 10px;
+    text-transform: uppercase;
+    border-radius: 8px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+/* Home.css */
+
+.add-week-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0; /* Increased margin for better spacing */
+}
+
+.add-week-button {
+    padding: 14px 30px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #3b82f6; /* Blue button */
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.add-week-button:hover {
+    background-color: #2563eb; /* Hover effect */
+    transform: scale(1.05);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px; /* Increased gap for better spacing */
+    background-color: #ffffff; /* White background for consistency */
+    color: #040404; /* Charcoal Black text */
+    padding: 30px;
+    border-radius: 8px;
+    animation: slideIn 0.5s ease-in-out;
+}
+
+.stats-table {
+    flex-basis: 75%;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.stats-table:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chart-section {
+    flex-basis: 40%;
+    padding: 25px;
+    background-color: #ffffff; /* White background for consistency */
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.chart-section:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container {
+    width: 100%;
+    height: 450px;
+    background-color: #ffffff; /* White background for consistency */
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.chart-container:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stats-table input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+.stats-table input[type='number']::-webkit-outer-spin-button,
+.stats-table input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
