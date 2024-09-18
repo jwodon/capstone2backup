@@ -2,29 +2,38 @@ import React, { useState, useContext, useEffect } from 'react';
 import { UserContext } from '../App';
 import Api from '../api';
 
-// Helper function to get the dates for a specific week
 const getWeekDates = (startDate, weekOffset) => {
     const start = new Date(startDate);
-    const startOfWeek = new Date(start);
-    const day = startOfWeek.getDay();
-    const difference = (day === 0 ? -6 : 1) - day; // Adjust to Monday
-    startOfWeek.setDate(startOfWeek.getDate() + difference);
-    startOfWeek.setDate(startOfWeek.getDate() + weekOffset * 7);
+    if (isNaN(start)) {
+        console.error('Invalid startDate in getWeekDates:', startDate);
+        return [];
+    }
+
+    // Adjust to the Monday of the current week
+    const day = start.getDay();
+    const diffToMonday = (day === 0 ? -6 : 1) - day;
+    const monday = new Date(start);
+    monday.setDate(start.getDate() + diffToMonday + weekOffset * 7);
 
     const weekDates = [];
     for (let i = 0; i < 7; i++) {
-        const date = new Date(startOfWeek);
-        date.setDate(startOfWeek.getDate() + i);
+        const date = new Date(monday);
+        date.setDate(monday.getDate() + i);
         weekDates.push(date);
     }
     return weekDates;
 };
 
-// Helper function to map logs to weeks
 const mapLogsToWeeks = (startDate, logs) => {
     const weeks = [];
     const start = new Date(startDate);
-    const lastLogDate = new Date(logs[logs.length - 1].date);
+    if (isNaN(start)) {
+        console.error('Invalid startDate in mapLogsToWeeks:', startDate);
+        return weeks;
+    }
+
+    // Determine the total number of weeks to display
+    const lastLogDate = logs.length > 0 ? new Date(logs[logs.length - 1].date) : start;
     const endOfWeek = new Date(lastLogDate);
     endOfWeek.setDate(endOfWeek.getDate() + ((7 - lastLogDate.getDay() + 1) % 7));
     const totalWeeks = Math.ceil((endOfWeek - start) / (7 * 24 * 60 * 60 * 1000));
@@ -32,7 +41,9 @@ const mapLogsToWeeks = (startDate, logs) => {
     for (let i = 0; i < totalWeeks; i++) {
         const weekDates = getWeekDates(startDate, i);
         const weekLogs = weekDates.map((date) => {
-            const log = logs.find((log) => new Date(log.date).toDateString() === date.toDateString());
+            const log = logs.find(
+                (log) => new Date(log.date).toDateString() === date.toDateString()
+            );
             return log || { date: date.toISOString().split('T')[0], weight: '', calories_intake: '' };
         });
         weeks.push({ weekDates, weekLogs });
@@ -84,10 +95,15 @@ function WeeklyStatsTable({ startDate, tdeeLogs, setTDEELogs }) {
                 calculateAverage(previousWeekLogs.filter((log) => log.weight > 0).map((log) => log.weight))
             );
         } else {
-            avgWeightPreviousWeek = startingWeight;
+            avgWeightPreviousWeek = parseFloat(startingWeight);
         }
 
-        if (weekCount === 0 || isNaN(avgCalories) || isNaN(avgWeightCurrentWeek) || isNaN(avgWeightPreviousWeek)) {
+        if (
+            weekCount === 0 ||
+            isNaN(avgCalories) ||
+            isNaN(avgWeightCurrentWeek) ||
+            isNaN(avgWeightPreviousWeek)
+        ) {
             return '0.00';
         }
 
@@ -122,6 +138,12 @@ function WeeklyStatsTable({ startDate, tdeeLogs, setTDEELogs }) {
     };
 
     const addNewWeek = async () => {
+        if (!startDate || isNaN(new Date(startDate))) {
+            console.error('Invalid startDate:', startDate);
+            alert('Start date is invalid. Please set a valid start date.');
+            return;
+        }
+
         const newWeeks = [...weeks];
         const newWeekIndex = newWeeks.length;
         const newWeekDates = getWeekDates(startDate, newWeekIndex);
@@ -153,7 +175,7 @@ function WeeklyStatsTable({ startDate, tdeeLogs, setTDEELogs }) {
                         <th rowSpan="2">Week</th>
                         <th rowSpan="2">Stats</th>
                         <th colSpan="7">Days</th>
-                        <th rowSpan="2">Weight Avg</th>
+                        <th rowSpan="2">Weight Avg (lbs)</th>
                         <th rowSpan="2">Calories Avg</th>
                         <th rowSpan="2">TDEE</th>
                     </tr>
@@ -184,13 +206,15 @@ function WeeklyStatsTable({ startDate, tdeeLogs, setTDEELogs }) {
                                         Week {weekIndex + 1} ({week.weekDates[0].toLocaleDateString()} -{' '}
                                         {week.weekDates[6].toLocaleDateString()})
                                     </td>
-                                    <td className="multi-row">Weight</td>
+                                    <td className="multi-row">Weight (lbs)</td>
                                     {week.weekLogs.map((log, dayIndex) => (
                                         <td key={`weight-${weekIndex}-${dayIndex}`}>
                                             <input
                                                 type="number"
                                                 value={log.weight}
-                                                onChange={(event) => handleChange(event, weekIndex, dayIndex, 'weight')}
+                                                onChange={(event) =>
+                                                    handleChange(event, weekIndex, dayIndex, 'weight')
+                                                }
                                                 onBlur={() => saveWeeklyData(weekIndex)}
                                                 min="0"
                                                 max="1000"

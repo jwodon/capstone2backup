@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode'; // Corrected import statement
 import Home from './components/Home';
 import NavBar from './components/NavBar';
 import Login from './components/Login';
@@ -27,7 +27,19 @@ function App() {
                     const decodedToken = jwtDecode(token);
                     const { username } = decodedToken;
                     Api.token = token;
-                    const user = await Api.getCurrentUser(username);
+                    let user = await Api.getCurrentUser(username);
+
+                    // Format the start_date before setting the user
+                    if (user && user.start_date) {
+                        const date = new Date(user.start_date);
+                        if (!isNaN(date)) {
+                            user.start_date = date.toISOString().split('T')[0];
+                        } else {
+                            console.error('Invalid start_date in user data:', user.start_date);
+                            user.start_date = '';
+                        }
+                    }
+
                     setCurrentUser(user);
 
                     if (user && user.start_date) {
@@ -59,13 +71,26 @@ function App() {
             Api.token = token;
             const decodedToken = jwtDecode(token);
             const { username } = decodedToken;
-            const user = await Api.getCurrentUser(username);
+            let user = await Api.getCurrentUser(username);
+
+            // Format the start_date before setting the user
+            if (user && user.start_date) {
+                const date = new Date(user.start_date);
+                if (!isNaN(date)) {
+                    user.start_date = date.toISOString().split('T')[0];
+                } else {
+                    console.error('Invalid start_date in user data:', user.start_date);
+                    user.start_date = '';
+                }
+            }
+
             setCurrentUser(user);
 
             if (user && user.start_date) {
                 const logs = await Api.fetchTDEELogs(user.id, user.start_date);
                 setTDEELogs(logs);
             }
+            return user; // Return the user data
         } catch (err) {
             console.error('Login failed', err);
             throw err;

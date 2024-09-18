@@ -23,12 +23,17 @@ class Api {
     }
 
     static async login(data) {
-        console.log('front api request');
+        console.log('Front-end API login request');
         const res = await this.request('auth/token', data, 'post');
-        console.log('front api request result', res);
-        Api.token = res.token;
-        localStorage.setItem('token', res.token);
-        return res.token;
+        console.log('Front-end API login response', res);
+        return res.token; // Return the token only
+    }
+
+    static async signup(data) {
+        console.log('Front-end API signup request');
+        const res = await this.request('auth/register', data, 'post');
+        console.log('Front-end API signup response', res);
+        return res.token; // Return the token only
     }
 
     static async updateUser(username, updatedData) {

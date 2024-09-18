@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link } from 'react-router-dom'; // Add this import
+import { Link } from 'react-router-dom';
 import CurrentStats from './CurrentStats';
 import WeeklyStatsTable from './WeeklyStatsTable';
 import Api from '../api';
@@ -9,7 +9,7 @@ import '../styles/App.css';
 
 function Home() {
     const { currentUser } = useContext(UserContext);
-    const [startDate, setStartDate] = useState('');
+    const [startDate, setStartDate] = useState(null);
     const [tdeeLogs, setTDEELogs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
