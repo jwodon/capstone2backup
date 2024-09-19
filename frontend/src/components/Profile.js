@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../App';
 import Api from '../api';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Profile.css'; // Import CSS for styling
+import '../styles/Profile.css';
 
 function Profile() {
     const { currentUser, setCurrentUser, logout } = useContext(UserContext);

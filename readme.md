@@ -1,68 +1,88 @@
-# Capstone Project
+# TrackTDEE
 
-## Overview
+## Deployed URL:
 
-This is a full-stack web application designed to track and calculate Total Daily Energy Expenditure (TDEE) for users. The application allows users to log their data, visualize metrics, and interact with the community.
+[Link to Deployed Site](https://your-app-url.com)
 
-**Frontend:** React.js  
-**Backend:** Node.js with Express  
-**Database:** PostgreSQL  
-**Authentication:** JWT
+## Project Overview:
 
-## Features
+TrackTDEE is a web application that allows users to monitor their Total Daily Energy Expenditure (TDEE) and related metrics. The app offers a user-friendly interface for tracking TDEE over time, allowing users to log and review their fitness progress. It's designed to help individuals stay on top of their fitness goals by providing data visualizations and detailed logs.
 
-- **User Authentication:** Secure sign-up and login using JWT.
-- **Data Logging:** Users can input and track their weight, calories consumed, and other metrics.
-- **TDEE Calculation:** Calculate daily calorie needs based on user input.
-- **Visualization:** Interactive charts to display user data and progress.
-- **API Integration:** Connect with Fitbit, MyFitnessPal, and Google Fit for enhanced data tracking.
-- **Community Interaction:** Users can share progress and engage with others.
+## Features:
 
-## Getting Started
+-   **User Authentication**: Users can sign up, log in, and log out. User sessions are securely managed.
+-   **Personalized TDEE Tracking**: Logged-in users can track their TDEE, view progress, and update logs. A detailed weekly statistics table is displayed to show trends over time.
+-   **Charts and Visualization**: The site provides graphical representations of the user's TDEE data, making it easy to spot trends and patterns.
+-   **Responsive Design**: The website is fully responsive, ensuring that users have an optimal experience on any device.
 
-### Prerequisites
+### Why these features?
 
-- Node.js (version 14 or higher)
-- npm (version 6 or higher) or yarn (version 1.22 or higher)
-- PostgreSQL
+These features were chosen to allow users to interact with the core functionality of the app—tracking fitness metrics—in a personalized and intuitive way. Data visualizations and detailed logs help users stay on track and make informed decisions about their fitness journey.
 
-### Installation
+## User Flow:
 
-1. **Clone the Repository**
+1. **Non-Logged-in User**: When a user visits the website for the first time, they are greeted with a welcome page encouraging them to sign up or log in.
+2. **Sign Up / Log In**: The user can create an account or log in if they already have one.
+3. **Home Page**: After logging in, users are welcomed with their personal statistics, including their weekly TDEE logs.
+4. **Progress Page**: Users can view charts showing their progress over time, such as their weight and TDEE logs.
+5. **Log Out**: Users can securely log out of the website once finished.
 
-   ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+## API Documentation:
 
-2. **Set Up the Backend**
+TrackTDEE uses a custom-built API to handle data fetching and updates. The API allows users to:
 
-cd backend
-npm install
+-   Fetch TDEE logs by date
+-   Save new TDEE logs
+-   Fetch nutrition and activity logs (if available)
 
-- Create a .env file in the backend directory and add your environment variables. Example:
-DATABASE_URL=your_database_url
-JWT_SECRET=your_jwt_secret
+The API is designed to be efficient and secure, using token-based authentication to manage user sessions.
 
-- Run the backend server:
-npm start
+### API Endpoints:
 
-3. **Set Up the Frontend**
-cd ../frontend
-npm install
+-   `POST /auth/token`: Login and receive a token
+-   `GET /users/:username`: Get the current user's profile
+-   `PATCH /users/:username`: Update a user’s profile
+-   `POST /tdee`: Log a TDEE entry
+-   `GET /tdee/:userId?startDate=YYYY-MM-DD`: Fetch TDEE logs for a user starting from a specific date
+-   `GET /tdee/:userId?startDate=YYYY-MM-DD&endDate=YYYY-MM-DD`: Fetch logs within a date range
 
-- Create a .env file in the frontend directory for any frontend-specific environment variables.
-- Run the frontend development server:
-npm start
+## Tech Stack:
 
+-   **Frontend**: React, React Router, Bootstrap for styling
+-   **Backend**: Node.js, Express.js for API development
+-   **Database**: PostgreSQL for storing user and log data
+-   **Authentication**: JWT (JSON Web Tokens) for secure authentication
+-   **Hosting**: Deployed on [Hosting Service]
 
-4. **Usage**
-Frontend: Navigate to http://localhost:3000 to access the application’s user interface.
-Backend: The backend API is available at http://localhost:5000 (or another port if configured differently)
+## How to Run Locally:
 
-5. **Testing**
-- Frontend Tests: Run the following command inside the frontend directory:
-npm test
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/tracktdee.git
+    ```
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Set up environment variables in a `.env` file for your API base URL, database connection, and JWT secret key.
+4. Start the development server:
+    ```bash
+    npm start
+    ```
+5. Open the app in your browser at `http://localhost:3000`.
 
-- Backend Tests: Run the following command inside the backend directory:
-npm test
+## Additional Notes:
 
+-   **Responsive Design**: The app is built with a responsive layout to work seamlessly on desktops, tablets, and mobile devices.
+-   **Future Enhancements**: Planned improvements include more detailed nutrition tracking, goal setting, and integration with wearable fitness devices.
+
+## Conclusion:
+
+TrackTDEE is a powerful tool for fitness enthusiasts who want to take control of their health by tracking key metrics like TDEE. It provides personalized data visualizations, detailed logs, and a simple, intuitive interface to make staying on track easy.
+
+---
+
+## Final Project Submission:
+
+-   **GitHub Repository**: [GitHub Repository Link](https://github.com/yourusername/tracktdee)
+-   **Deployed Site**: [Deployed URL](https://your-app-url.com)

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { UserContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import Api from '../api';
-import '../styles/Signup.css'; // Import CSS for styling
+import '../styles/Signup.css';
 
 function Signup() {
     const { login } = useContext(UserContext);
