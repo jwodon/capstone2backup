@@ -2,7 +2,7 @@
 
 ## Deployed URL:
 
-[Link to Deployed Site](https://your-app-url.com)
+[Link to Deployed Site](https://capstone2final-bcb13c416cad.herokuapp.com/)
 
 ## Project Overview:
 

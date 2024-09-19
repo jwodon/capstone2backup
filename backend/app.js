@@ -1,12 +1,13 @@
+// backend/app.js
+
 const express = require('express');
 const cors = require('cors');
 const path = require('path'); // Ensure 'path' is imported
-const { NotFoundError } = require('./expressError');
-const userRoutes = require('./routes/users');
-const authRoutes = require('./routes/auth');
-const tdeeRoutes = require('./routes/tdeeLogs');
+const { NotFoundError } = require('./expressError'); // Adjust the path as necessary
+const userRoutes = require('./routes/users'); // Adjust the path as necessary
+const authRoutes = require('./routes/auth'); // Adjust the path as necessary
+const tdeeRoutes = require('./routes/tdeeLogs'); // Adjust the path as necessary
 
-// Initialize app before using it
 const app = express();
 
 // Middleware
@@ -22,16 +23,16 @@ if (process.env.NODE_ENV !== 'production') {
         })
     );
 } else {
-    app.use(cors()); // Adjust as needed for production
+    app.use(cors()); // Allow all origins in production or configure as needed
 }
 
-// Debugging logs
+// Debugging logs (optional)
 app.use((req, res, next) => {
     console.log(`${req.method} request to ${req.url}`);
     next();
 });
 
-// Routes
+// API Routes
 app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/tdee', tdeeRoutes);
@@ -63,7 +64,7 @@ app.use((err, req, res, next) => {
     });
 });
 
-// Health check route (ensure it's placed before the catchall in production)
+// Health check route (optional, ensure it's placed before the catchall in production)
 if (process.env.NODE_ENV !== 'production') {
     app.get('/', (req, res) => {
         res.send('TDEE Tracker API is running');
