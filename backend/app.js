@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path'); // Import path
+const path = require('path'); // Ensure 'path' is imported
 const { NotFoundError } = require('./expressError');
 const userRoutes = require('./routes/users');
 const authRoutes = require('./routes/auth');
@@ -39,11 +39,11 @@ app.use('/tdee', tdeeRoutes);
 // Serve static files from the React app in production
 if (process.env.NODE_ENV === 'production') {
     // Serve the static files from the React app
-    app.use(express.static(path.join(__dirname, '../frontend/build')));
+    app.use(express.static(path.join(__dirname, 'frontend/build')));
 
     // The "catchall" handler: for any request that doesn't match API routes, send back React's index.html file.
     app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+        res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
     });
 }
 
