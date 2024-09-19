@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'production') {
         })
     );
 } else {
-    app.use(cors()); // Allow all origins in production or configure as needed
+    app.use(cors()); // Adjust as needed for production
 }
 
 // Debugging logs

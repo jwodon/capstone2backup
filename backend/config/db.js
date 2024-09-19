@@ -1,16 +1,11 @@
 'use strict';
 const { Client } = require('pg');
 
-let DB_URI;
+const DB_URI = process.env.DATABASE_URL || 'postgresql:///capstone2';
 
-if (process.env.NODE_ENV === 'test') {
-    DB_URI = 'postgresql:///capstone2_test';
-} else {
-    DB_URI = 'postgresql:///capstone2';
-}
-
-let db = new Client({
+const db = new Client({
     connectionString: DB_URI,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
 });
 
 db.connect();
