@@ -1,0 +1,44 @@
+/* NavBar.css */
+
+.navbar-custom {
+    background-color: #007BFF !important; /* Primary blue background */
+    padding: 10px 20px;
+}
+
+.navbar .brand-name {
+    color: #FFFFFF !important; /* White text for brand */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.navbar .nav-link-custom {
+    color: #FFFFFF !important; /* White text for nav links */
+    font-size: 1rem;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.navbar .nav-link-custom:hover {
+    color: #D1E3FF !important; /* Lighter blue on hover */
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5); /* White border for toggler */
+}
+
+.navbar .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .navbar .brand-name,
+    .navbar .nav-link-custom {
+        font-size: 0.9rem;
+    }
+
+    .navbar .nav-link-custom {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
