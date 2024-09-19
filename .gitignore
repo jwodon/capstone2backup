@@ -4,7 +4,9 @@
 # React build output
 /frontend/build/
 
+/backend/frontend/
 backend/frontend/
+
 
 # Logs
 *.log
