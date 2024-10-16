@@ -1,8 +1,16 @@
+// src/App.test.js
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the navigation bar', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const navElement = screen.getByRole('navigation');
+  expect(navElement).toBeInTheDocument();
+});
+
+test('renders the home page', () => {
+  render(<App />);
+  const headingElement = screen.getByText(/Welcome to TrackTDEE!/i);
+  expect(headingElement).toBeInTheDocument();
 });
